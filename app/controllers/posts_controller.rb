@@ -11,8 +11,11 @@ class PostsController < ApplicationController
 		@post = Post.new
 	end
 
-	def create
-	  @post = Post.new(params["post"])
+def create
+		@post = Post.new(post_params(:title, :description))
+		# @post = Post.new(post_params)
+		# @post = Post.new(params.require(:post).permit(:title, :description))
+	  # @post = Post.new(params["post"])
 	  @post.save
 	  redirect_to post_path(@post)
 	end
